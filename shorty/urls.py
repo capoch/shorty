@@ -15,7 +15,13 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
+from django.conf import settings
+from shortener.views import HomeView, ShortyCBView
+
+
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^$', HomeView.as_view(), name="home"),
+    url(r'^(?P<shortcode>[\w-]{6,15})/$', ShortyCBView.as_view(), name="shorty"),
 ]
